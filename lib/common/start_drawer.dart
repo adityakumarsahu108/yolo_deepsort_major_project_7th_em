@@ -30,8 +30,8 @@ class StartDrawer extends StatelessWidget {
               children: [
                 text('Choose Image or Video Input type', 1),
                 text('Upload Image or Video in the Container', 2),
-                text('Choose Yolo version', 3),
-                text('Click on the Process Button', 4),
+                text('Click on the Process Button', 3),
+                text('Choose Yolo version', 4),
                 text('Play the Processed Video/Image or Upload a new One', 5),
               ],
             ),
