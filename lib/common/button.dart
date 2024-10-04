@@ -6,8 +6,8 @@ import 'package:yolo_deepsort/common/style.dart';
 Widget commonButton({
   required String text,
   required VoidCallback onPressed,
-  double width = 150.0,
-  double height = 50.0,
+  double width = 110.0,
+  double height = 45.0,
 }) {
   return SizedBox(
     width: width.w,
@@ -23,7 +23,7 @@ Widget commonButton({
       child: Text(
         text,
         style: AppTextStyle.secondaryBlackTextStyle
-            .copyWith(color: Colors.white, fontSize: 16.sp),
+            .copyWith(color: Colors.white, fontSize: 15.sp),
       ),
     ),
   );
