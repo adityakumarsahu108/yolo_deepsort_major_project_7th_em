@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Mini Project',
+          'Major Project',
           style: AppTextStyle.primaryTextStyle
               .copyWith(color: Colors.white, fontSize: 25.sp),
         ),
