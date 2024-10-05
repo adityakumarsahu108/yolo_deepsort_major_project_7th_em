@@ -20,9 +20,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Major Project',
+          'Object Detection and Tracking',
           style: AppTextStyle.primaryTextStyle
-              .copyWith(color: Colors.white, fontSize: 25.sp),
+              .copyWith(color: Colors.white, fontSize: 20.sp),
         ),
         centerTitle: true,
         leading: Builder(builder: (BuildContext context) {
@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(height: 20.h),
             Center(
               child: Text(
                 'Choose Input Type',

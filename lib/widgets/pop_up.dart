@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yolo_deepsort/common/button.dart';
 import 'package:yolo_deepsort/common/style.dart';
 
@@ -27,6 +28,9 @@ class PopUp extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 }),
+            SizedBox(
+              width: 10.w,
+            ),
             commonButton(
                 text: 'YOLO v8',
                 onPressed: () {

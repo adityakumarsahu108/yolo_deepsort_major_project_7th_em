@@ -53,60 +53,54 @@ class _UploadContainerState extends State<UploadContainer> {
               border: Border.all(color: Colors.white, width: 2),
               borderRadius: BorderRadius.circular(12.sp),
             ),
-            child: Center(
-              child: mediaFile != null
-                  ? (state is MediaPickerImagePicked
-                      ? Image.file(
-                          mediaFile,
-                          fit: BoxFit.cover,
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ValueListenableBuilder<VideoPlayerController?>(
+            child: mediaFile != null
+                ? (state is MediaPickerImagePicked
+                    ? Image.file(
+                        mediaFile,
+                        fit: BoxFit.cover,
+                      )
+                    : LayoutBuilder(
+                        builder: (context, constraints) {
+                          return SizedBox(
+                            width: constraints.maxWidth,
+                            height: constraints.maxHeight,
+                            child:
+                                ValueListenableBuilder<VideoPlayerController?>(
                               valueListenable: _videoControllerNotifier,
                               builder: (context, videoController, _) {
                                 if (videoController != null &&
                                     videoController.value.isInitialized) {
-                                  return AspectRatio(
-                                    aspectRatio:
-                                        videoController.value.aspectRatio,
-                                    child: VideoPlayer(videoController),
+                                  return FittedBox(
+                                    fit: BoxFit.contain,
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(12.sp),
+                                      child: SizedBox(
+                                        width: constraints.maxWidth,
+                                        height: constraints.maxHeight,
+                                        child: AspectRatio(
+                                          aspectRatio:
+                                              videoController.value.aspectRatio,
+                                          child: VideoPlayer(videoController),
+                                        ),
+                                      ),
+                                    ),
                                   );
                                 } else if (_videoErrorNotifier.value) {
-                                  return const Text('Error playing video.',
-                                      style: TextStyle(color: Colors.red));
+                                  return const Text(
+                                    'Error playing video.',
+                                    style: TextStyle(color: Colors.red),
+                                  );
                                 } else {
                                   return const CircularProgressIndicator();
                                 }
                               },
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    _videoControllerNotifier.value?.play();
-                                  },
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    Icons.pause,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    _videoControllerNotifier.value?.pause();
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ))
-                  : Column(
+                          );
+                        },
+                      ))
+                : Center(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
@@ -124,7 +118,7 @@ class _UploadContainerState extends State<UploadContainer> {
                         ),
                       ],
                     ),
-            ),
+                  ),
           ),
         );
       },
